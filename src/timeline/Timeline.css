@@ -1,0 +1,24 @@
+.timeline {
+    width: 100%;
+}
+
+.timeline__left {
+    width: 100%;
+}
+
+.timeline__createPost {
+    margin-bottom: 20px;
+}
+
+.timeline__posts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+    .timeline__posts {
+        gap: 15px;
+    }
+}

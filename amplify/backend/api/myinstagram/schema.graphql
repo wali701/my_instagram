@@ -1,0 +1,59 @@
+type Post
+  @model
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "userId"
+        operations: [create, update, delete, read]
+      }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  text: String!
+  imageKey: String
+  userId: ID!
+  likes: Int!
+  likedBy: [String]
+  tags: [String]
+  comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
+  timestamp: AWSDateTime!
+}
+
+type User
+  @model
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      { allow: owner, ownerField: "id", operations: [create, update, delete] }
+    ]
+  ) {
+  id: ID!
+  username: String! @index(name: "byUsername")
+  bio: String
+  profilePicture: String
+  posts: [Post] @hasMany
+  likes: Int
+  likedBy: [String]
+}
+
+type Comment
+  @model
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "userId"
+        operations: [create, update, delete, read]
+      }
+      { allow: private, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  text: String!
+  userId: ID!
+  postId: ID! @index(name: "byPost")
+  post: Post! @belongsTo(fields: ["postId"])
+  timestamp: AWSDateTime!
+}

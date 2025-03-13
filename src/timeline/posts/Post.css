@@ -1,0 +1,150 @@
+.post{
+    width: 550px;
+    margin: 30px 40px 50px 40px;
+}
+
+.post__header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: flex;
+}
+.post__username{
+    font-weight: bolder;
+    margin-left: 10px;
+    font-size: 15px;
+}
+.post__timestamp{
+    font-size: 10px;
+    margin-left: 10px;
+}
+.comment__user{
+    font-weight: bolder;
+    margin-right: 5px;
+    color: #ffffff;
+}
+
+.post__headerAuthor{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bolder;
+}
+
+.post__headerAuthor > span{
+    color: rgb(255, 255, 255);
+}
+
+.post__image > img{
+    width: 100%;
+    border-radius: 6px;
+    border: 0.6px solid rgba(128, 128, 128, 0.516);
+}
+
+.post__footerIcons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post__text {
+    word-wrap: break-word;
+}
+
+.postIcons{
+    padding: 7px;
+    font-size: 30px;
+}
+
+.postIcon:hover{
+    cursor: pointer;
+}
+.deleteIcon {
+    cursor: pointer;
+    color: #ff4444;
+}
+
+.postIcon.liked {
+    color: #ed4956;
+}
+
+.post__likes {
+    font-size: 12px;
+    color: #8e8e8e;
+    margin-bottom: 5px;
+}
+
+.post__caption {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #262626;
+    line-height: 1.4;
+}
+
+.post__comments {
+    margin-top: 8px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.post__comment {
+    display: flex;
+    gap: 5px;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.comment__user {
+    font-weight: 600;
+}
+
+.comment__text {
+    word-wrap: break-word;
+}
+
+.post__commentForm {
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.post__commentInput {
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+    border: none;
+    border-top: 1px solid #dbdbdb;
+    outline: none;
+    color: #262626;
+}
+
+.post__commentButton {
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.no-comments {
+    color: #8e8e8e;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+@media (max-width: 767px) {
+    .post {
+        max-width: 100%;
+    }
+
+    .post__header {
+        padding: 5px 10px;
+    }
+
+    .post__footerIcons {
+        padding: 5px 0;
+    }
+}

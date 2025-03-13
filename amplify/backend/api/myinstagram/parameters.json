@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "myinstagram",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authmyinstagrama1310c9b",
+      "Outputs.UserPoolId"
+    ]
+  },
+  "AuthModeLastUpdated": "2025-03-13T09:31:38.498Z"
+}
