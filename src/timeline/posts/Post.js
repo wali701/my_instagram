@@ -37,12 +37,22 @@ function Post({ user, profilePictureUrl, postImage, text, likes, likedBy, commen
         try {
             const userAttributes = await fetchUserAttributes();
             const currentUserId = userAttributes.sub;
-            const isLiked = likedBy && likedBy.includes(currentUserId);
-            const updatedLikedBy = isLiked 
-                ? likedBy.filter(id => id !== currentUserId) 
-                : [...(likedBy || []), currentUserId];
+            const updatedLikedBy = Array.isArray(likedBy) ? [...likedBy] : [];
+            const isLiked = updatedLikedBy.includes(currentUserId);
+    
+            if (isLiked) {
+               
+                const index = updatedLikedBy.indexOf(currentUserId);
+                if (index > -1) {
+                    updatedLikedBy.splice(index, 1);
+                }
+            } else {
+               
+                updatedLikedBy.push(currentUserId);
+            }
+    
             const updatedLikes = isLiked ? Math.max(likes - 1, 0) : likes + 1;
-
+    
             const response = await client.graphql({
                 query: updatePost,
                 variables: { 
@@ -53,13 +63,16 @@ function Post({ user, profilePictureUrl, postImage, text, likes, likedBy, commen
                     } 
                 }
             });
+    
             if (response.errors) throw new Error(JSON.stringify(response.errors));
-            if (onUpdate) onUpdate(postId, response.data.updatePost);
+    
+            
+            if (onUpdate) onUpdate(postId, { likes: updatedLikes, likedBy: updatedLikedBy });
         } catch (error) {
             console.error('Error liking post:', error);
         }
     };
-
+    
     const handleCommentToggle = () => {
         setShowCommentInput(prev => !prev);
         setCommentText('');
